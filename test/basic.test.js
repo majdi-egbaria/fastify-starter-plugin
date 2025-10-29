@@ -2,7 +2,7 @@ const { test } = require('node:test')
 const Fastify = require('fastify')
 const { fastifyStarter } = require('../')
 
-test('Methods', async (t) => {
+test('Register plugin with default options', async (t) => {
   const app = Fastify()
 
   app.register(fastifyStarter)
@@ -10,12 +10,26 @@ test('Methods', async (t) => {
   await app.ready()
 
   app.increment()
-
   app.increment()
-
   app.decrement()
 
   const counter = app.counter()
 
   t.assert.equal(counter, 1)
+})
+
+test('Register plugin with custom options', async (t) => {
+  const app = Fastify()
+
+  app.register(fastifyStarter, {
+    initialValue: 7
+  })
+
+  await app.ready()
+
+  app.increment()
+
+  const counter = app.counter()
+
+  t.assert.equal(counter, 8)
 })

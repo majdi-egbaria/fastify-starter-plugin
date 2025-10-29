@@ -1,18 +1,20 @@
 const fp = require('fastify-plugin')
 
 function fastifyStarter (fastify, options, next) {
-  let counter = 0
+  fastify.decorate('starterData', {
+    counter: options.initialValue ? Number(options.initialValue) : 0
+  })
 
   fastify.decorate('counter', function () {
-    return counter
+    return fastify.starterData.counter
   })
 
   fastify.decorate('increment', function () {
-    counter = counter + 1
+    fastify.starterData.counter = fastify.starterData.counter + 1
   })
 
   fastify.decorate('decrement', function () {
-    counter = Math.max(counter - 1, 0)
+    fastify.starterData.counter = Math.max(fastify.starterData.counter - 1, 0)
   })
 
   next()
