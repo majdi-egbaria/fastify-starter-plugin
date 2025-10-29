@@ -1,4 +1,4 @@
-# fastify-starter-
+# fastify-starter-plugin
 
 ![CI](https://github.com/YOUR_USERNAME/fastify-starter-plugin/workflows/CI/badge.svg)
 [![NPM version](https://img.shields.io/npm/v/fastify-starter-plugin.svg?style=flat)](https://www.npmjs.com/package/fastify-starter-plugin)
